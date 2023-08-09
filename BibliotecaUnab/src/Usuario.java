@@ -7,15 +7,15 @@ public class Usuario {
     private char genero;
     private String carrera;
     private boolean prestamo;
-    private String profesion;
+    private String tipoUsuario;
 
-    public Usuario(String rut, String nombre, char genero, String profesion, String carrera) {
+    public Usuario(String rut, String nombre, char genero, String tipoUsuario, String carrera) {
         this.rut = rut;
         this.nombre = nombre;
         this.genero = genero;
         this.carrera = carrera;
         this.prestamo = prestamo;
-        this.profesion = profesion;
+        this.tipoUsuario = tipoUsuario;
     }
 
     public String getRut() {
@@ -59,11 +59,11 @@ public class Usuario {
     }
 
     public String getProfesion() {
-        return profesion;
+        return tipoUsuario;
     }
 
     public void setProfesion(String profesion) {
-        this.profesion = profesion;
+        this.tipoUsuario = profesion;
     }
 
 
@@ -75,7 +75,7 @@ public class Usuario {
                 ", genero=" + genero +
                 ", carrera='" + carrera + '\'' +
                 ", prestamo=" + prestamo +
-                ", profesion='" + profesion + '\'' +
+                ", profesion='" + tipoUsuario + '\'' +
                 '}';
     }
 
@@ -139,6 +139,8 @@ public class Usuario {
 
     */
 
+
+    //validador de rut normal
     public boolean validarRUT(String rut) {
         if (rut == null || rut.isEmpty()) {
             return false;
@@ -169,19 +171,23 @@ public class Usuario {
         return digitoVerificadorCalculado == dv;
     }
 
+
+
+    //metodo para validar genero
     public boolean validarGenero(char genero) {
         return genero == 'M' || genero == 'F';
     }
 
+    //metodo para validar si es profesor o estudiante
     public boolean habilitado() {
         return esEstudiante() || esProfesor();
     }
 
     boolean esProfesor() {
-        return profesion != null && profesion.equalsIgnoreCase("profesor");
+        return tipoUsuario != null && tipoUsuario.equalsIgnoreCase("profesor");
     }
 
     boolean esEstudiante() {
-        return profesion != null && profesion.equalsIgnoreCase("estudiante");
+        return tipoUsuario != null && tipoUsuario.equalsIgnoreCase("estudiante");
     }
 }
