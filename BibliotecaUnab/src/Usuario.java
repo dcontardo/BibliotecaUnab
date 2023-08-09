@@ -6,10 +6,10 @@ public class Usuario {
     private String nombre;
     private char genero;
     private String carrera;
-    private boolean prestamo;
+    public String prestamo;
     private String tipoUsuario;
 
-    public Usuario(String rut, String nombre, char genero, String tipoUsuario, String carrera) {
+    public Usuario(String rut, String nombre, char genero, String tipoUsuario, String carrera,String prestamo) {
         this.rut = rut;
         this.nombre = nombre;
         this.genero = genero;
@@ -50,22 +50,21 @@ public class Usuario {
         this.carrera = carrera;
     }
 
-    public boolean getPrestamo() {
+    public  String getPrestamo() {
         return prestamo;
     }
 
-    public void setPrestamo(boolean prestamo) {
+    public void setPrestamo(String prestamo) {
         this.prestamo = prestamo;
     }
 
-    public String getProfesion() {
+    public String getTipoUsuario() {
         return tipoUsuario;
     }
 
-    public void setProfesion(String profesion) {
-        this.tipoUsuario = profesion;
+    public void setTipoUsuario(String tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
     }
-
 
     @Override
     public String toString() {
@@ -87,9 +86,9 @@ public class Usuario {
         System.out.println(listaUsuarios);
     }
 
-    public static void editarUsuario(ArrayList<Usuario> listaUsuarios, String nombre, char nuevoGenero, String nuevaCarrera) {
+    public static void editarUsuario(ArrayList<Usuario> listaUsuarios, String nuevoNombre, char nuevoGenero, String nuevaCarrera) {
         for (Usuario usuario : listaUsuarios) {
-            if (usuario.getNombre().equals(nombre)) {
+            if (usuario.getNombre().equals(nuevoNombre)) {
                 usuario.setGenero(nuevoGenero);
                 usuario.setCarrera(nuevaCarrera);
                 System.out.println("¡El usuario se ha editado exitosamente!");
@@ -190,4 +189,11 @@ public class Usuario {
     boolean esEstudiante() {
         return tipoUsuario != null && tipoUsuario.equalsIgnoreCase("estudiante");
     }
+
+    //método tiene libro
+    boolean tieneLibro() {
+        return !"0".equals(prestamo) && "ISBN".equals(prestamo);
+    }
+
+
 }
